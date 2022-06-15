@@ -16,7 +16,9 @@ afterAll(() => server.close());
 
 test("returns null when API call fails", async () => {
   server.use(
-    rest.get("http://localhost:4730/*", (req, res, ctx) => res(ctx.status(500)))
+    rest.get("http://localhost:4730/*", (req, res, ctx) =>
+      res.once(ctx.status(500))
+    )
   );
 
   const { result } = renderHook(() => useData(path));
