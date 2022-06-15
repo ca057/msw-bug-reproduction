@@ -9,17 +9,17 @@ interface UseData {
 const useData: UseData = (path) => {
   const [data, setData] = useState<null>(null);
 
-  const fetchBook = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     const response = await fetch(`http://localhost:4730/${path}`);
     const result = await response.json();
     setData(result);
   }, [path]);
 
   useEffect(() => {
-    fetchBook();
-  }, [fetchBook]);
+    fetchData();
+  }, [fetchData]);
 
-  return { data, reload: fetchBook };
+  return { data, reload: fetchData };
 };
 
 export default useData;
