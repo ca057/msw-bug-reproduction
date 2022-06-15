@@ -7,7 +7,9 @@ const path = "data/123";
 const data = { foo: 42 };
 
 const server = setupServer(
-  rest.get("http://localhost:4730/*", (req, res, ctx) => res(ctx.json(data)))
+  rest.get("http://localhost:4730/*", (req, res, ctx) =>
+    res(ctx.text(JSON.stringify(data)))
+  )
 );
 
 beforeAll(() => server.listen());

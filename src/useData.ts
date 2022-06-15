@@ -11,8 +11,8 @@ const useData: UseData = (path) => {
 
   const fetchData = useCallback(async () => {
     const response = await fetch(`http://localhost:4730/${path}`);
-    const result = await response.json();
-    setData(result);
+    const result = await response.text();
+    setData(JSON.parse(result));
   }, [path]);
 
   useEffect(() => {
